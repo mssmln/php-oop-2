@@ -3,20 +3,20 @@ Crea una classe User che rappresenti quella tabella, e usala per stampare in pag
 Il database e la tabella non devono essere realmente creati.Bonus: Creare una classe estesa e un trait a piacere. (create anche in questo caso delle istanze)*/ ?>
 
 <?php
-require_once 'User.php';
+require_once 'User.php'; //richiamo il file User.php con la classe User
 
 
 // istanza utente 1
 $user1 = new User(1);
 //var_dump($user1);
-//var_dump(get_class_methods($user1));
+//var_dump(get_class_methods($user1)); //mostra il construct,setProfile e getProfile
 try{
     $user1->setProfile('max','redd','mred@email.it');
 } catch(Exception $error){
-    echo $error->getMessage();
+    echo $error->getMessage();//il getMessage è un suo metodo, ne ha altri
 }
 echo $user1->getProfile();
-//var_dump($user1);
+var_dump($user1);
 
 
 
@@ -24,14 +24,23 @@ echo $user1->getProfile();
 $user2 = new User(2);
 //$user2->anno_iscrizione = 2021; //cannot access protected property
 $user2->avatar = 'Obama';
-var_dump($user2);
+//var_dump($user2);
 try{
     $user2->setProfile('alida','bianchi','alida@email.it');
 } catch(Exception $error){
     echo $error->getMessage();
 }
 echo $user2->getProfile();
+var_dump($user2);
 
 
 
 // istanza utente 3
+$user3 = new User(3);
+$user3->avatar = 'Gates';
+try{
+    $user3->setProfile('gio','green','gates@email.it');
+} catch(Exception $error){
+    echo $error->getMessage();
+}
+echo $user3->getProfile();
