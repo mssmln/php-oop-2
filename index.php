@@ -3,7 +3,8 @@ Crea una classe User che rappresenti quella tabella, e usala per stampare in pag
 Il database e la tabella non devono essere realmente creati.Bonus: Creare una classe estesa e un trait a piacere. (create anche in questo caso delle istanze)*/ ?>
 
 <?php
-require_once 'User.php'; //richiamo il file User.php con la classe User
+//require_once 'User.php'; //richiamo il file User.php con la classe User
+require_once 'SuperUser.php'; //richiamo la classe estesa di User.php perchè il require su User.php l'ho fatto in SuperUser.php
 
 
 // istanza utente 1
@@ -15,8 +16,7 @@ try{
 } catch(Exception $error){
     echo $error->getMessage();//il getMessage è un suo metodo, ne ha altri
 }
-echo $user1->getProfile();
-var_dump($user1);
+//var_dump($user1);
 
 
 
@@ -30,8 +30,7 @@ try{
 } catch(Exception $error){
     echo $error->getMessage();
 }
-echo $user2->getProfile();
-var_dump($user2);
+//var_dump($user2);
 
 
 
@@ -43,4 +42,37 @@ try{
 } catch(Exception $error){
     echo $error->getMessage();
 }
-echo $user3->getProfile();
+
+
+
+// istanza utente 4 dalla classe estesa
+$user4 = new SuperUser(4,100); // rispettivamente id e point
+$user4->avatar = 'Mattarella';
+try{
+    $user4->setProfile(500); // n. messaggi inviati
+} catch(Exception $error){
+    echo $error->getMessage();
+}
+var_dump($user4);
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>php classes</title>
+</head>
+<body>
+    <ul>
+        <li>user 1 - <?php echo $user1->getProfile(); ?> </li>
+        <li>user 2 - <?php echo $user2->getProfile(); ?> </li>
+        <li>user 3 - <?php echo $user3->getProfile(); ?> </li>
+        <li>user 4 - <?php echo $user4->getProfile(); ?> </li>
+    </ul>
+    
+</body>
+</html>
