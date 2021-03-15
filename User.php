@@ -1,5 +1,7 @@
 <?php
 
+require_once 'GetBrowser.php'; // file with trait
+
 class User{
     protected $id;
     protected $name;
@@ -10,6 +12,9 @@ class User{
     protected $anno_iscrizione;
     protected $messaggi_inviati;
     protected $like_ricevuti;
+
+
+    use GetBrowser; // file with trait
 
 
     public function __construct($_id){

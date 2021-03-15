@@ -11,11 +11,12 @@ require_once 'SuperUser.php'; //richiamo la classe estesa di User.php perchè il
 $user1 = new User(1);
 //var_dump($user1);
 //var_dump(get_class_methods($user1)); //mostra il construct,setProfile e getProfile
-try{
+try{ // intercetta il metodo 
     $user1->setProfile('max','redd','mred@email.it');
-} catch(Exception $error){
+} catch(Exception $error){ // e da errore nel caso non funzioni
     echo $error->getMessage();//il getMessage è un suo metodo, ne ha altri
 }
+$user1->setBrowser('chrome',87);
 //var_dump($user1);
 
 
@@ -46,14 +47,26 @@ try{
 
 
 // istanza utente 4 dalla classe estesa
-$user4 = new SuperUser(4,100); // rispettivamente id e point
+$user4 = new SuperUser(4); 
 $user4->avatar = 'Mattarella';
 try{
-    $user4->setProfile(500); // n. messaggi inviati
+    $user4->setProfile(1001); // n. messaggi inviati
 } catch(Exception $error){
     echo $error->getMessage();
 }
-var_dump($user4);
+//var_dump($user4);
+
+
+// istanza utente 5 dalla classe estesa + trait
+$user5 = new SuperUser(5);
+try{
+    $user5->setIncome();
+} catch(Exception $error){
+    echo $error->getMessage();
+}
+$user5->setBrowser('firefox',88);
+var_dump($user5);
+
 
 
 ?>
@@ -68,10 +81,17 @@ var_dump($user4);
 </head>
 <body>
     <ul>
-        <li>user 1 - <?php echo $user1->getProfile(); ?> </li>
+        <li>user 1 - <?php 
+            echo $user1->getProfile(); 
+            echo ' ' .$user1->getBrowser(); # trait
+            ?> </li>
         <li>user 2 - <?php echo $user2->getProfile(); ?> </li>
         <li>user 3 - <?php echo $user3->getProfile(); ?> </li>
         <li>user 4 - <?php echo $user4->getProfile(); ?> </li>
+        <li>user 5 - <?php 
+            echo $user5->getIncome(); 
+            echo ' ' .$user5->getBrowser(); # trait
+            ?> </li>
     </ul>
     
 </body>
